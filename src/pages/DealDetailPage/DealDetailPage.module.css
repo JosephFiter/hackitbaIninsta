@@ -187,10 +187,136 @@
   letter-spacing: 0.05em;
 }
 
+.unidad {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--color-text-light);
+  margin-left: 2px;
+}
+
+/* Progreso */
+.progresoSection {
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+}
+
+.progresoHeader {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-light);
+}
+
+.progresoNum {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.progresoBar {
+  height: 10px;
+  background-color: var(--color-border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progresoFill {
+  height: 100%;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+}
+
+.progresoCompleta {
+  background-color: #2e7d32;
+}
+
+.progresoLabel {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  margin-top: var(--spacing-sm);
+}
+
+/* Formulario unirse */
+.joinForm {
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.joinForm h3 {
+  font-size: var(--font-size-base);
+  margin: 0;
+}
+
+.joinRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.cantidadInput {
+  width: 80px;
+  padding: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  text-align: center;
+}
+
+.totalEstimado {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+}
+
+.joinError {
+  color: #c62828;
+  font-size: var(--font-size-sm);
+}
+
 .joinBtn {
   width: 100%;
   padding: 1rem !important;
   font-size: var(--font-size-lg) !important;
+}
+
+/* Mensajes */
+.successMsg,
+.completaMsg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.successMsg {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.completaMsg {
+  background-color: #f5f5f5;
+  color: var(--color-text-light);
+}
+
+.successMsg span,
+.completaMsg span {
+  font-size: 2.5rem;
+}
+
+.fechaLimite {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
 }
 
 .notFound {

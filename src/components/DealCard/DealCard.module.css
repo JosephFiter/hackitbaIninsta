@@ -124,3 +124,39 @@
   padding-top: var(--spacing-sm);
   border-top: 1px solid var(--color-border);
 }
+
+/* Barra de progreso */
+.progresoWrap {
+  margin-top: var(--spacing-sm);
+}
+
+.progresoBar {
+  height: 6px;
+  background-color: var(--color-border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progresoFill {
+  height: 100%;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+}
+
+.progresoLabel {
+  font-size: 0.72rem;
+  color: var(--color-text-light);
+  margin-top: 0.25rem;
+}
+
+.cardCompleta {
+  opacity: 0.75;
+}
+
+.unidad {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--color-text-light);
+  margin-left: 2px;
+}

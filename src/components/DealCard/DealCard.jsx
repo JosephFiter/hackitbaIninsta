@@ -1,33 +1,45 @@
 import { Link } from 'react-router-dom';
-import { formatPrice } from '../../data/deals';
+import { formatPrice, getProgreso, getAhorroPorc } from '../../data/deals';
 import styles from './DealCard.module.css';
 
 export default function DealCard({ deal }) {
-  const ahorro = deal.precioOriginal - deal.precioSplit;
+  const progreso = getProgreso(deal);
+  const ahorroPorc = getAhorroPorc(deal);
+  const completa = deal.estado === 'completa';
 
   return (
-    <Link to={`/ofertas/${deal.id}`} className={styles.card}>
+    <Link to={`/ofertas/${deal.id}`} className={`${styles.card} ${completa ? styles.cardCompleta : ''}`}>
       <div className={styles.imageArea}>
-        <span className={styles.emoji}>{deal.imageEmoji}</span>
-        <span className={`${styles.badge} ${deal.estado === 'completo' ? styles.badgeComplete : styles.badgeActive}`}>
-          {deal.estado === 'buscando' ? 'Buscando compañero' : 'Completo'}
+        <span className={styles.emoji}>{deal.imageEmoji ?? '🛍️'}</span>
+        <span className={`${styles.badge} ${completa ? styles.badgeComplete : styles.badgeActive}`}>
+          {completa ? '✅ Completa' : '🟢 Abierta'}
         </span>
-        <span className={styles.offerBadge}>{deal.tipoOferta}</span>
+        {ahorroPorc > 0 && (
+          <span className={styles.offerBadge}>-{ahorroPorc}%</span>
+        )}
       </div>
+
       <div className={styles.content}>
-        <p className={styles.store}>{deal.tienda}</p>
-        <h3 className={styles.title}>{deal.titulo}</h3>
+        {deal.categoria && <p className={styles.store}>{deal.categoria}</p>}
+        <h3 className={styles.title}>{deal.nombre}</h3>
+
         <div className={styles.prices}>
-          <span className={styles.originalPrice}>{formatPrice(deal.precioOriginal)}</span>
-          <span className={styles.splitPrice}>{formatPrice(deal.precioSplit)}</span>
-          <span className={styles.perPerson}>por persona</span>
+          <span className={styles.splitPrice}>
+            {formatPrice(deal.precioParticipante)}
+            <small>/{deal.unidad ?? 'u'}</small>
+          </span>
+          {deal.precioMinorista > 0 && (
+            <span className={styles.originalPrice}>{formatPrice(deal.precioMinorista)}</span>
+          )}
         </div>
-        <div className={styles.savings}>
-          Ahorrás {formatPrice(ahorro)}
-        </div>
-        <div className={styles.meta}>
-          <span>{deal.ubicacion}</span>
-          <span>{deal.publicadoPor}</span>
+
+        <div className={styles.progresoWrap}>
+          <div className={styles.progresoBar}>
+            <div className={styles.progresoFill} style={{ width: `${progreso}%` }} />
+          </div>
+          <p className={styles.savings}>
+            {deal.cantidadActual} de {deal.cantidadObjetivo} {deal.unidad ?? 'u'} comprometidas
+          </p>
         </div>
       </div>
     </Link>

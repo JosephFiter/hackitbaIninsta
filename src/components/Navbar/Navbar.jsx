@@ -49,16 +49,7 @@ export default function Navbar() {
               className={({ isActive }) => isActive ? styles.active : ''}
               onClick={() => setMenuOpen(false)}
             >
-              Ofertas
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/publicar"
-              className={`btn btn-primary ${styles.ctaBtn}`}
-              onClick={() => setMenuOpen(false)}
-            >
-              Publicar oferta
+              Compras
             </NavLink>
           </li>
           {user ? (

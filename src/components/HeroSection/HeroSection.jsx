@@ -7,26 +7,23 @@ export default function HeroSection() {
       <div className={`container ${styles.inner}`}>
         <div className={styles.text}>
           <h1 className={styles.title}>
-            Dividí el costo,
+            Precios mayoristas,
             <br />
-            <span className={styles.highlight}>llevate lo que querés</span>
+            <span className={styles.highlight}>cantidades normales</span>
           </h1>
           <p className={styles.subtitle}>
-            ¿Viste una promo 2x1 pero solo necesitás uno? Encontrá a alguien para compartir la oferta y ahorrar juntos.
+            Sumáte a una compra grupal y accedé a precios de supermercado mayorista sin tener que comprar en grandes cantidades.
           </p>
           <div className={styles.actions}>
             <Link to="/ofertas" className="btn btn-primary">
-              Ver ofertas disponibles
-            </Link>
-            <Link to="/publicar" className="btn btn-outline">
-              Publicar una oferta
+              Ver compras disponibles
             </Link>
           </div>
         </div>
         <div className={styles.visual}>
           <div className={styles.card}>
-            <span className={styles.cardEmoji}>👟</span>
-            <span className={styles.cardLabel}>2x1</span>
+            <span className={styles.cardEmoji}>🛒</span>
+            <span className={styles.cardLabel}>Mayorista</span>
           </div>
           <div className={styles.arrow}>➡️</div>
           <div className={styles.people}>
@@ -36,12 +33,12 @@ export default function HeroSection() {
             </div>
             <div className={styles.plus}>+</div>
             <div className={styles.person}>
-              <span>🙋‍♂️</span>
-              <span className={styles.personLabel}>Alguien</span>
+              <span>🙋</span>
+              <span className={styles.personLabel}>Otros</span>
             </div>
           </div>
           <div className={styles.arrow}>= 💰</div>
-          <div className={styles.savingsText}>¡Ahorro para ambos!</div>
+          <div className={styles.savingsText}>¡Precio mayorista!</div>
         </div>
       </div>
     </section>

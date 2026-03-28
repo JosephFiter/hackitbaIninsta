@@ -2,19 +2,19 @@ import styles from './HowItWorks.module.css';
 
 const steps = [
   {
-    icon: '🔍',
-    title: 'Encontrá una promo',
-    description: 'Buscá entre las ofertas 2x1, 3x2 o descuentos por cantidad disponibles en tiendas.',
+    icon: '🏪',
+    title: 'Productos del mayorista',
+    description: 'Traemos los precios del supermercado mayorista directo a la app. Sin ir ni comprar en grandes cantidades.',
   },
   {
-    icon: '🤝',
-    title: 'Conectá con alguien',
-    description: 'Unite a una oferta publicada o publicá la tuya para que alguien se sume.',
+    icon: '🛒',
+    title: 'Sumáte al pedido',
+    description: 'Elegí cuántas unidades querés y unite a la compra grupal. Cuantos más seamos, antes se completa.',
   },
   {
     icon: '💰',
-    title: 'Dividí y ahorrá',
-    description: 'Comprá juntos, dividan el costo y llévense cada uno lo que necesita.',
+    title: 'Pagás precio mayorista',
+    description: 'Cuando el pedido se completa, cada uno paga solo su parte al precio mayorista. Mucho más barato que el super.',
   },
 ];
 

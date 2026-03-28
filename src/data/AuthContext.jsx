@@ -1,58 +1,50 @@
 import { createContext, useContext, useState } from 'react';
+import { authApi } from '../api/auth';
 
 const AuthContext = createContext();
 
+function getStoredUser() {
+  const saved = localStorage.getItem('splitdeal_user');
+  return saved ? JSON.parse(saved) : null;
+}
+
+function persistSession(token, user) {
+  localStorage.setItem('splitdeal_token', token);
+  localStorage.setItem('splitdeal_user', JSON.stringify(user));
+}
+
+function clearSession() {
+  localStorage.removeItem('splitdeal_token');
+  localStorage.removeItem('splitdeal_user');
+}
+
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(() => {
-    const saved = localStorage.getItem('splitdeal_user');
-    return saved ? JSON.parse(saved) : null;
-  });
+  const [user, setUser] = useState(getStoredUser);
 
-  function getUsers() {
-    const saved = localStorage.getItem('splitdeal_users');
-    return saved ? JSON.parse(saved) : [];
-  }
-
-  function saveUsers(users) {
-    localStorage.setItem('splitdeal_users', JSON.stringify(users));
-  }
-
-  function setAndPersistUser(userData) {
+  // Lanza excepción si el backend responde con error
+  async function login(email, password) {
+    const { token, user: userData } = await authApi.login(email, password);
+    persistSession(token, userData);
     setUser(userData);
-    if (userData) {
-      localStorage.setItem('splitdeal_user', JSON.stringify(userData));
-    } else {
-      localStorage.removeItem('splitdeal_user');
-    }
   }
 
-  function login(email, password) {
-    const users = getUsers();
-    const found = users.find((u) => u.email === email && u.password === password);
-    if (!found) {
-      return { success: false, error: 'Email o contraseña incorrectos' };
-    }
-    setAndPersistUser({ name: found.name, email: found.email });
-    return { success: true };
+  // Lanza excepción si el backend responde con error
+  async function register(name, email, password) {
+    const { token, user: userData } = await authApi.register(name, email, password);
+    persistSession(token, userData);
+    setUser(userData);
   }
 
-  function register(name, email, password) {
-    const users = getUsers();
-    if (users.find((u) => u.email === email)) {
-      return { success: false, error: 'Ya existe una cuenta con ese email' };
-    }
-    const newUser = { name, email, password };
-    saveUsers([...users, newUser]);
-    setAndPersistUser({ name, email });
-    return { success: true };
-  }
-
+  // Redirige al backend para el flujo OAuth de Google.
+  // El backend debe redirigir de vuelta a /auth/callback?token=<jwt>
+  // Agregar esa ruta en App.jsx para capturar el token al volver.
   function loginWithGoogle() {
-    setAndPersistUser({ name: 'Usuario Google', email: 'usuario@gmail.com' });
+    authApi.redirectToGoogle();
   }
 
   function logout() {
-    setAndPersistUser(null);
+    clearSession();
+    setUser(null);
   }
 
   return (
@@ -64,8 +56,6 @@ export function AuthProvider({ children }) {
 
 export function useAuth() {
   const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
+  if (!context) throw new Error('useAuth must be used within an AuthProvider');
   return context;
 }

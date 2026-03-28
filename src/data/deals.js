@@ -1,156 +1,3 @@
-const initialDeals = [
-  {
-    id: 1,
-    titulo: "Zapatillas Nike Air Max 90",
-    tienda: "Nike Store - Unicenter",
-    tipoOferta: "2x1",
-    precioOriginal: 89990,
-    precioSplit: 44995,
-    categoria: "Zapatillas",
-    descripcion: "Promo 2x1 en zapatillas Nike Air Max 90 seleccionadas. Disponible en talles 38 al 44. Colores: blanco/negro y negro/rojo.",
-    imageEmoji: "👟",
-    publicadoPor: "María G.",
-    fecha: "2026-03-25",
-    estado: "buscando",
-    ubicacion: "Buenos Aires",
-  },
-  {
-    id: 2,
-    titulo: "Remeras Adidas Originals",
-    tienda: "Adidas Outlet - Dot",
-    tipoOferta: "2x1",
-    precioOriginal: 35990,
-    precioSplit: 17995,
-    categoria: "Ropa",
-    descripcion: "Llevá 2 remeras Adidas Originals al precio de 1. Varios colores y talles disponibles. Promo válida hasta fin de mes.",
-    imageEmoji: "👕",
-    publicadoPor: "Lucas T.",
-    fecha: "2026-03-24",
-    estado: "buscando",
-    ubicacion: "Buenos Aires",
-  },
-  {
-    id: 3,
-    titulo: "Auriculares Sony WH-1000XM5",
-    tienda: "Musimundo - Alto Palermo",
-    tipoOferta: "50% 2da unidad",
-    precioOriginal: 249990,
-    precioSplit: 187492,
-    categoria: "Electro",
-    descripcion: "50% de descuento en la segunda unidad de auriculares Sony WH-1000XM5. Noise cancelling premium.",
-    imageEmoji: "🎧",
-    publicadoPor: "Sofía R.",
-    fecha: "2026-03-23",
-    estado: "buscando",
-    ubicacion: "CABA",
-  },
-  {
-    id: 4,
-    titulo: "Pack Cerveza Patagonia",
-    tienda: "Carrefour - Caballito",
-    tipoOferta: "3x2",
-    precioOriginal: 8990,
-    precioSplit: 5993,
-    categoria: "Supermercado",
-    descripcion: "Promo 3x2 en packs de 6 cervezas Patagonia. Incluye Amber Lager, Bohemian Pilsener y Weisse.",
-    imageEmoji: "🍺",
-    publicadoPor: "Martín L.",
-    fecha: "2026-03-26",
-    estado: "buscando",
-    ubicacion: "Buenos Aires",
-  },
-  {
-    id: 5,
-    titulo: "Zapatillas New Balance 574",
-    tienda: "Dexter - Abasto",
-    tipoOferta: "2x1",
-    precioOriginal: 94990,
-    precioSplit: 47495,
-    categoria: "Zapatillas",
-    descripcion: "2x1 en New Balance 574 clásicas. Talles del 36 al 45. Varios colores.",
-    imageEmoji: "👟",
-    publicadoPor: "Ana P.",
-    fecha: "2026-03-22",
-    estado: "completo",
-    ubicacion: "CABA",
-  },
-  {
-    id: 6,
-    titulo: "Pantalón Jogger Nike",
-    tienda: "Nike Factory - Distrito Arcos",
-    tipoOferta: "2x1",
-    precioOriginal: 65990,
-    precioSplit: 32995,
-    categoria: "Ropa",
-    descripcion: "Llevate 2 joggers Nike Tech Fleece por el precio de 1. Colores negro, gris y azul.",
-    imageEmoji: "👖",
-    publicadoPor: "Diego M.",
-    fecha: "2026-03-27",
-    estado: "buscando",
-    ubicacion: "Buenos Aires",
-  },
-  {
-    id: 7,
-    titulo: "Smartwatch Samsung Galaxy Watch 6",
-    tienda: "Frávega Online",
-    tipoOferta: "50% 2da unidad",
-    precioOriginal: 189990,
-    precioSplit: 142492,
-    categoria: "Electro",
-    descripcion: "50% en la segunda unidad del Samsung Galaxy Watch 6. Ideal para comprar con alguien y dividir.",
-    imageEmoji: "⌚",
-    publicadoPor: "Valentina S.",
-    fecha: "2026-03-25",
-    estado: "buscando",
-    ubicacion: "Envío a todo el país",
-  },
-  {
-    id: 8,
-    titulo: "Café Nespresso Cápsulas",
-    tienda: "Nespresso Boutique - Recoleta",
-    tipoOferta: "3x2",
-    precioOriginal: 12990,
-    precioSplit: 8660,
-    categoria: "Supermercado",
-    descripcion: "3x2 en cápsulas Nespresso seleccionadas. Incluye líneas Original y Vertuo.",
-    imageEmoji: "☕",
-    publicadoPor: "Camila F.",
-    fecha: "2026-03-26",
-    estado: "buscando",
-    ubicacion: "CABA",
-  },
-  {
-    id: 9,
-    titulo: "Mochila Under Armour",
-    tienda: "Dafiti",
-    tipoOferta: "2x1",
-    precioOriginal: 45990,
-    precioSplit: 22995,
-    categoria: "Ropa",
-    descripcion: "Promo 2x1 en mochilas Under Armour Hustle. Perfectas para el gym o la facu.",
-    imageEmoji: "🎒",
-    publicadoPor: "Tomás H.",
-    fecha: "2026-03-28",
-    estado: "buscando",
-    ubicacion: "Envío a todo el país",
-  },
-  {
-    id: 10,
-    titulo: "Zapatillas Puma RS-X",
-    tienda: "Open Sports - Dot",
-    tipoOferta: "2x1",
-    precioOriginal: 79990,
-    precioSplit: 39995,
-    categoria: "Zapatillas",
-    descripcion: "2x1 en Puma RS-X. Diseño retro-futurista. Talles 37 al 43.",
-    imageEmoji: "👟",
-    publicadoPor: "Julieta C.",
-    fecha: "2026-03-27",
-    estado: "buscando",
-    ubicacion: "Buenos Aires",
-  },
-];
-
 export function formatPrice(price) {
   return new Intl.NumberFormat('es-AR', {
     style: 'currency',
@@ -160,16 +7,20 @@ export function formatPrice(price) {
   }).format(price);
 }
 
-export function getDealById(deals, id) {
-  return deals.find((deal) => deal.id === Number(id));
+export function getProgreso(compra) {
+  return Math.min(Math.round((compra.cantidadActual / compra.cantidadObjetivo) * 100), 100);
+}
+
+export function getAhorroPorc(compra) {
+  if (!compra.precioMinorista || compra.precioMinorista <= 0) return null;
+  return Math.round(((compra.precioMinorista - compra.precioParticipante) / compra.precioMinorista) * 100);
 }
 
 export function getFeaturedDeals(deals) {
-  return deals.filter((deal) => deal.estado === 'buscando').slice(0, 4);
+  return deals.filter((d) => d.estado === 'abierta').slice(0, 4);
 }
 
 export function getCategories(deals) {
-  return [...new Set(deals.map((deal) => deal.categoria))];
+  return [...new Set(deals.map((d) => d.categoria).filter(Boolean))];
 }
 
-export { initialDeals };

@@ -5,7 +5,7 @@ import DealCard from '../DealCard/DealCard';
 import styles from './FeaturedDeals.module.css';
 
 export default function FeaturedDeals() {
-  const { deals } = useDeals();
+  const { deals, loading } = useDeals();
   const featured = getFeaturedDeals(deals);
 
   return (
@@ -17,11 +17,15 @@ export default function FeaturedDeals() {
             Ver todas
           </Link>
         </div>
-        <div className={styles.grid}>
-          {featured.map((deal) => (
-            <DealCard key={deal.id} deal={deal} />
-          ))}
-        </div>
+        {loading ? (
+          <p>Cargando ofertas...</p>
+        ) : (
+          <div className={styles.grid}>
+            {featured.map((deal) => (
+              <DealCard key={deal.id} deal={deal} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

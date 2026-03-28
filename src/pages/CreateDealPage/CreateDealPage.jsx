@@ -8,13 +8,21 @@ export default function CreateDealPage() {
   const { addDeal } = useDeals();
   const navigate = useNavigate();
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  function handleSubmit(dealData) {
-    addDeal(dealData);
-    setSubmitted(true);
-    setTimeout(() => {
-      navigate('/ofertas');
-    }, 2000);
+  async function handleSubmit(dealData) {
+    setError('');
+    setLoading(true);
+    try {
+      await addDeal(dealData);
+      setSubmitted(true);
+      setTimeout(() => navigate('/ofertas'), 2000);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   if (submitted) {
@@ -38,8 +46,9 @@ export default function CreateDealPage() {
             ¿Encontraste una promo 2x1 y necesitás alguien para compartirla? Publicala acá y encontrá tu compañero de compra.
           </p>
         </div>
+        {error && <div className={styles.error}>{error}</div>}
         <div className={styles.formWrapper}>
-          <DealForm onSubmit={handleSubmit} />
+          <DealForm onSubmit={handleSubmit} disabled={loading} />
         </div>
       </div>
     </div>

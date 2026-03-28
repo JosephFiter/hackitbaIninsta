@@ -1,25 +1,28 @@
-import { createContext, useContext, useState } from 'react';
-import { initialDeals } from './deals';
+import { createContext, useContext, useState, useEffect } from 'react';
+import { dealsApi } from '../api/deals';
 
 const DealsContext = createContext();
 
 export function DealsProvider({ children }) {
-  const [deals, setDeals] = useState(initialDeals);
+  const [deals, setDeals] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  function addDeal(newDeal) {
-    setDeals((prev) => [
-      {
-        ...newDeal,
-        id: Math.max(...prev.map((d) => d.id)) + 1,
-        fecha: new Date().toISOString().split('T')[0],
-        estado: 'buscando',
-      },
-      ...prev,
-    ]);
+  useEffect(() => {
+    dealsApi
+      .getAll()
+      .then(setDeals)
+      .catch((e) => setError(e.message))
+      .finally(() => setLoading(false));
+  }, []);
+
+  // Actualiza una compra en el estado local (ej: después de unirse)
+  function updateCompra(updated) {
+    setDeals((prev) => prev.map((d) => (d.id === updated.id ? updated : d)));
   }
 
   return (
-    <DealsContext.Provider value={{ deals, addDeal }}>
+    <DealsContext.Provider value={{ deals, loading, error, updateCompra }}>
       {children}
     </DealsContext.Provider>
   );
@@ -27,8 +30,6 @@ export function DealsProvider({ children }) {
 
 export function useDeals() {
   const context = useContext(DealsContext);
-  if (!context) {
-    throw new Error('useDeals must be used within a DealsProvider');
-  }
+  if (!context) throw new Error('useDeals must be used within a DealsProvider');
   return context;
 }

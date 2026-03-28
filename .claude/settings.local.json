@@ -1,12 +1,15 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm create:*)",
-      "Bash(cp -r temp-vite/* temp-vite/.gitignore .)",
-      "Bash(rm -rf temp-vite)",
       "Bash(npm install:*)",
-      "Bash(npx vite:*)",
-      "Bash(npm run:*)"
+      "Bash(node scraper/maxiconsumo.js --debug)",
+      "Bash(taskkill //F //IM chrome.exe)",
+      "Bash(taskkill //F //IM chromium.exe)",
+      "Bash(node scraper/inspect.js)",
+      "Bash(node scraper/maxiconsumo.js)",
+      "Bash(find /c/Users/lucas/Desktop/hackitbaIninsta/server -name *.js)",
+      "Bash(xargs ls:*)",
+      "Bash(find /c/Users/lucas/Desktop/hackitbaIninsta -name scraper* -o -name *.py -o -name *.ipynb)"
     ]
   }
 }

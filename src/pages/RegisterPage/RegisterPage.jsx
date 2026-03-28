@@ -13,7 +13,7 @@ export default function RegisterPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     setError('');
 
@@ -22,17 +22,16 @@ export default function RegisterPage() {
       return;
     }
 
-    const result = register(form.name, form.email, form.password);
-    if (result.success) {
+    try {
+      await register(form.name, form.email, form.password);
       navigate('/');
-    } else {
-      setError(result.error);
+    } catch (err) {
+      setError(err.message);
     }
   }
 
   function handleGoogle() {
-    loginWithGoogle();
-    navigate('/');
+    loginWithGoogle(); // redirige al proveedor OAuth, no vuelve acá
   }
 
   return (
