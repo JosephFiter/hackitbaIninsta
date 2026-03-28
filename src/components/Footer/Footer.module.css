@@ -1,0 +1,47 @@
+.footer {
+  background-color: var(--color-text);
+  color: #b2bec3;
+  padding: var(--spacing-2xl) 0;
+  margin-top: var(--spacing-3xl);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+  text-align: center;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.logo {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: white;
+}
+
+.links {
+  display: flex;
+  gap: var(--spacing-xl);
+}
+
+.links a {
+  color: #b2bec3;
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  transition: color var(--transition);
+}
+
+.links a:hover {
+  color: white;
+}
+
+.copy {
+  font-size: var(--font-size-sm);
+  opacity: 0.6;
+}
