@@ -1,0 +1,136 @@
+.navbar {
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-lg);
+  font-weight: 800;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.logo:hover {
+  color: var(--color-primary-dark);
+}
+
+.logoIcon {
+  font-size: 1.5rem;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xl);
+  list-style: none;
+}
+
+.links a {
+  color: var(--color-text);
+  font-weight: 500;
+  transition: color var(--transition);
+  text-decoration: none;
+}
+
+.links a:hover {
+  color: var(--color-primary);
+}
+
+.active {
+  color: var(--color-primary) !important;
+  font-weight: 600;
+}
+
+.ctaBtn {
+  padding: 0.5rem 1.25rem !important;
+  font-size: var(--font-size-sm) !important;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: var(--spacing-sm);
+}
+
+.bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-text);
+  transition: all var(--transition);
+}
+
+.barOpen:nth-child(1) {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-text);
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.barOpen:nth-child(2) {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-text);
+  opacity: 0;
+}
+
+.barOpen:nth-child(3) {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-text);
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.userArea {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.userName {
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .links {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background-color: var(--color-surface);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+    gap: var(--spacing-lg);
+  }
+
+  .linksOpen {
+    display: flex;
+  }
+}
